@@ -36,7 +36,7 @@ export const updateUser = async(req,res,next) => {
 }
 
 export const deleteUser = async( req,res,next) => {
-    id(req.user.id !== req.params.id)
+    if(req.user.id !== req.params.id)
     return next(errorHandler(401, 'Ypu can only delete your own account!'));
     try {
         await User.findByIdAndDelete(req.params.id);
